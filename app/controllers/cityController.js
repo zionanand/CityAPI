@@ -2,13 +2,21 @@ var cityController = function (City) {
 
   var post = function (req, res) {
     var city = new City(req.body);
-    city.save(function (err) {
-      if (err)
-        res.status(500).send(err);
-      else {
-        res.status(201).send(city);
-      }
-    });
+
+    if (!req.body.name) {
+      res.status(400);
+      res.send('City name required!');
+    } else {
+      city.save(function (err) {
+        if (err) {
+          res.status(400);
+          res.send(err);
+        } else {
+          res.status(201);
+          res.send(city);
+        }
+      });
+    }
   }
 
   var get = function (req, res) {

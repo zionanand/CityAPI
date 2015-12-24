@@ -66,4 +66,7 @@ app.use('/api/cities', cityRouter);
 //Start the server
 //=== === === === === === === === === === === === === === === === =
 app.listen(port);
+
 console.log("Gulp is running the App on Port : " + port);
+
+module.exports = app;
